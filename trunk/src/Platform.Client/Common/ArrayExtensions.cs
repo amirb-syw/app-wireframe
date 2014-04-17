@@ -7,7 +7,7 @@ namespace Platform.Client.Common
 	{
 		public static string ToHexString(this byte[] bytes)
 		{
-			return bytes.Aggregate(new StringBuilder(bytes.Length * 2), (sb, i) => sb.Append(i.ToString("x2"))).ToString();
+			return bytes.Aggregate(new StringBuilder(bytes.Length*2), (sb, i) => sb.Append(i.ToString("x2"))).ToString();
 		}
 	}
 }

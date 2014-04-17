@@ -22,7 +22,7 @@ namespace Platform.Client.Common.WebClient
 	public class WebClient : IWebClient
 	{
 		public WebClient()
-		{			
+		{
 			Encoding = Encoding.UTF8;
 			RequestTimeout = 30000; // 30 seconds default timeout
 			ReadWriteTimeout = 5000; // Allow 5 seconds between reads or writes by default.
@@ -107,13 +107,13 @@ namespace Platform.Client.Common.WebClient
 		private string UrlEncode(NameValueCollection data)
 		{
 			return data.AllKeys
-				.Aggregate(new StringBuilder(), (sb, k) => sb
-															   .Append(HttpUtility.UrlEncode(k, Encoding))
-															   .Append("=")
-															   .Append(HttpUtility.UrlEncode(data[k], Encoding))
-															   .Append("&")
+						.Aggregate(new StringBuilder(), (sb, k) => sb
+																		.Append(HttpUtility.UrlEncode(k, Encoding))
+																		.Append("=")
+																		.Append(HttpUtility.UrlEncode(data[k], Encoding))
+																		.Append("&")
 				)
-				.ToString();
+						.ToString();
 		}
 
 		private string ReadResponse(WebRequest request)
@@ -122,7 +122,7 @@ namespace Platform.Client.Common.WebClient
 			using (var reader = new StreamReader(response.GetResponseStream(), Encoding))
 			{
 				return reader.ReadToEnd();
-			}	
+			}
 		}
 
 		private WebRequest GetWebRequest(Uri url)

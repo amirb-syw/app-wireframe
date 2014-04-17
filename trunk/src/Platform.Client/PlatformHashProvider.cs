@@ -14,7 +14,7 @@ namespace Platform.Client
 		private readonly IPlatformTokenProvider _platfromTokenProvider;
 
 		public PlatformHashProvider(IApplicationSettings applicationSettings,
-			IPlatformTokenProvider platformTokenProvider)
+									IPlatformTokenProvider platformTokenProvider)
 		{
 			_applicationSettings = applicationSettings;
 			_platfromTokenProvider = platformTokenProvider;

@@ -13,27 +13,27 @@ namespace Platform.Client.Common
 
 	public class ParametersTranslator : IParametersTranslator
 	{
-		private readonly Type[] _untypedCollectionInterfaces = new[] { typeof(IEnumerable), typeof(IList), typeof(ICollection) };
-		private readonly Type[] _genericCollectionInterfaces = new[] { typeof(IEnumerable<>), typeof(IList<>), typeof(ICollection<>) };
+		private readonly Type[] _untypedCollectionInterfaces = new[] {typeof (IEnumerable), typeof (IList), typeof (ICollection)};
+		private readonly Type[] _genericCollectionInterfaces = new[] {typeof (IEnumerable<>), typeof (IList<>), typeof (ICollection<>)};
 
 		private bool IsCollectionInstance(Type type)
 		{
-			return type != typeof(string) && 
-				type.GetInterfaces()
-					.Any(typeToCheck => _untypedCollectionInterfaces.Any(untypedInteface => typeToCheck == untypedInteface) || 
-						_genericCollectionInterfaces.Any(typedInterface => typedInterface == typeToCheck));
+			return type != typeof (string) &&
+					type.GetInterfaces()
+						.Any(typeToCheck => _untypedCollectionInterfaces.Any(untypedInteface => typeToCheck == untypedInteface) ||
+											_genericCollectionInterfaces.Any(typedInterface => typedInterface == typeToCheck));
 		}
 
 		public string ToJson(KeyValuePair<string, object> parameter)
 		{
 			var parameterType = parameter.Value.GetType();
 
-			if (parameterType == typeof(DateTime))
+			if (parameterType == typeof (DateTime))
 			{
 				return ((DateTime)parameter.Value).ToString("yyyy-MM-ddTHH:mm:ss");
 			}
 
-			if (parameterType.IsValueType || parameterType == typeof(string))
+			if (parameterType.IsValueType || parameterType == typeof (string))
 			{
 				return parameter.Value.ToString();
 			}

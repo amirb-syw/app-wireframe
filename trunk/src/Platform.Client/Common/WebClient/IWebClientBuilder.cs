@@ -6,7 +6,7 @@ namespace Platform.Client.Common.WebClient
 	{
 		IWebClientBuilder SetTimeOut(int timeout);
 		IWebClientBuilder SetReadWriteTimeOut(int timeout);
-		IWebClientBuilder SetEncoding(Encoding encoding);		
+		IWebClientBuilder SetEncoding(Encoding encoding);
 		IWebClient Create();
 	}
 
@@ -15,7 +15,7 @@ namespace Platform.Client.Common.WebClient
 	{
 		private int _timeout;
 		private int _readwriteTimeout;
-		private Encoding _encoding;		
+		private Encoding _encoding;
 
 		public WebClientBuilder()
 		{
@@ -46,11 +46,11 @@ namespace Platform.Client.Common.WebClient
 		public IWebClient Create()
 		{
 			return new WebClient
-			{
-				RequestTimeout = _timeout,		
-				Encoding = _encoding,
-				ReadWriteTimeout = _readwriteTimeout
-			};
+						{
+							RequestTimeout = _timeout,
+							Encoding = _encoding,
+							ReadWriteTimeout = _readwriteTimeout
+						};
 		}
 	}
 }

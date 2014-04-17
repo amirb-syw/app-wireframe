@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Platform.Client;
-using Platform.Client.Common.Context;
-using SywApplicationWireframe.Domain.Configuration;
-using SywApplicationWireframe.Domain.Users;
+﻿using Platform.Client;
 
 namespace SywApplicationWireframe.Domain
 {
@@ -13,11 +8,9 @@ namespace SywApplicationWireframe.Domain
 
 		protected abstract string BasePath { get; }
 
-		protected ApiBase(IContextProvider contextProvider)
+		protected ApiBase(IPlatformProxy platformProxy)
 		{
-			Proxy = new PlatformProxy(new PlatformSettings(),
-									   new ApplicationSettings(),
-									   new PlatformTokenProvider(contextProvider));
+			Proxy = platformProxy;
 		}
 
 		protected string GetEndpointPath(string endpoint)
@@ -25,9 +18,14 @@ namespace SywApplicationWireframe.Domain
 			return string.Format("/{0}/{1}", BasePath, endpoint);
 		}
 
-		protected T Call<T>(string endpoint, object parametersModel = null)
+		protected T Get<T>(string endpoint, object parametersModel = null)
 		{
 			return Proxy.Get<T>(GetEndpointPath(endpoint), parametersModel);
+		}
+
+		protected T Post<T>(string endpoint, object parametersModel = null)
+		{
+			return Proxy.Post<T>(GetEndpointPath(endpoint), parametersModel);
 		}
 	}
 }

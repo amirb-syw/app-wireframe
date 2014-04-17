@@ -6,15 +6,17 @@ namespace Platform.Client.Common.Context
 	public class ThreadContextProvider : IContextProvider
 	{
 		private static readonly object Latch = new object();
+
 		[ThreadStatic]
 		private static Dictionary<string, object> _store;
+
 		private static Dictionary<string, object> Store
 		{
 			get
 			{
 				if (_store == null)
 				{
-					lock(Latch)
+					lock (Latch)
 					{
 						if (_store == null)
 						{

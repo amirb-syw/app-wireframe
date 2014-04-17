@@ -29,8 +29,10 @@ namespace Platform.Client.Common.Context
 	public class ThreadStateProvider : IStateProvider
 	{
 		private static readonly object Latch = new object();
+
 		[ThreadStatic]
 		private static Dictionary<string, string> _store;
+
 		private static Dictionary<string, string> Store
 		{
 			get
